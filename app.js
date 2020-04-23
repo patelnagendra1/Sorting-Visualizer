@@ -7,8 +7,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static("public"));
+let x = 100;
+let arr = (Array.from({length: x}, () => Math.floor(Math.random() * x)));
 app.get("/", function(req, res) {
-    res.render("sort");
+    res.render("sort",{array:arr});
 });
 
 function bubble_Sort(arr){
@@ -27,20 +29,20 @@ function bubble_Sort(arr){
   }
 
 
+
  app.post("/",function(req,res){
 
   // console.log(req.body);
-   let x = parseInt(req.body.size);
+   //let x = parseInt(req.body.size);
   // console.log(x);
    if(req.body.bubble === 'bubble')
    {
-
-      let arr = (Array.from({length: x}, () => Math.floor(Math.random() * x)));
       //console.log(arr);
       var start = new Date().getTime();
       bubble_Sort(arr);
       var end = new Date().getTime();
-      res.send("Bubble Sort execeuted succesfiully Time req was "+ (end-start) + " millisecond");
+      res.render("sort",{array:arr});
+    //  res.send("Bubble Sort execeuted succesfiully Time req was "+ (end-start) + " millisecond");
    }
    else if (req.body.quick === 'quick') {
      res.send("Quick Sort execeuted succesfiully");
