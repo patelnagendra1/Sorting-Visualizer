@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-
     <meta charset="utf-8">
     <title>Sorting Visvualizer</title>
     <link rel="stylesheet" href = "style.css">
   </head>
+
   <body>
+
+
     <div class="navbar">
       <form class="" action="/" method="post">
         <input type="radio" name="size" value="1000">1000</input>
@@ -20,5 +22,15 @@
       </form>
     </div>
 
+    <div class="graph">
+      <% for(var i = 0;i<array.length;i++){ %>
+      <% let width = 5+i %>
+      <% let hgt = array[i] %>
+      <% let lft = i*2+5 %>
+          <div style="border-left: 5px solid black;height: <%=hgt%>px;margin: 5px;float: left"></div>
+    </div>
+
+
+      <% } %>
   </body>
 </html>
