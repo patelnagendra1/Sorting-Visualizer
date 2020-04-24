@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -21,24 +22,40 @@
         <button type="submit" name="merge" value="merge">Merge Sort</button>
         <button type="submit" name="insertion" value="insertion">Insertion Sort</button>
       </form>
+
+
+
+
     </div>
     <% let array = (Array.from({length: size}, () => Math.floor(Math.random() * size))) %>
     <div class="graph">
-      <% for(var i = 0;i<array.length;i++){ %>
-      <% let hgt = array[i]*(700/size) %>
-
+      <%var len = array.length,i, j, stop;%>
+      <%for (i=0; i < len; i++){%>
+      <%for (j=0, stop=len-i; j < stop; j++){%>
+      <%if (array[j] > array[j+1]){%>
+      <%let t = array[j];%>
+      <%array[j] = array[j+1];%>
+      <%array[j+1] = t;%>
+      <%}%>
+      <%}%>
+      <% for(var k = 0;k<array.length;k++){ %>
+      <% let hgt = array[k]*(700/size) %>
       <% if(size < 80){ %>
         <% margin = 250%>
       <%}else{%>
       <% margin = 200*150/size %>
       <%}%>
       <%width = 1200/size%>
-      <%if(i == 0){%>
+      <%if(k == 0){%>
         <hr style="height:<%=hgt%>px;border-left: <%=width%>px solid black;float: left;margin-left:<%=margin%>px">
         <%}else{%>
           <hr style="height:<%=hgt%>px;border-left: <%=width%>px solid black;float: left;margin-left:0.2px">
           <%}%>
+          <% } %>
+      <%}%>
+      
     </div>
-      <% } %>
+      
   </body>
 </html>
+
