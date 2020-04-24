@@ -2,51 +2,35 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 app.set('view engine', 'ejs');
-
+let flag1 = 0;
+let flag2 = 0;
+let flag3 = 0;
+let flag4 = 0;
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static("public"));
+let size;
+let array = (Array.from({length: 200}, () => Math.floor(Math.random() * 200)))
 
 app.get("/", function(req, res) {
-    res.render("sort",{size:200});
+    res.render("sort",{array:array,size:200,flag1:0,flag2:0,flag3:0,flag4:0});
 });
 
-// function bubble_Sort(arr){
-//     var len = arr.length,
-//         i, j, stop;
-//
-//     for (i=0; i < len; i++){
-//         for (j=0, stop=len-i; j < stop; j++){
-//             if (arr[j] > arr[j+1]){
-//                 let t = arr[j];
-//                 arr[j] = arr[j+1];
-//                 arr[j+1] = t;
-//             }
-//         }
-//     }
-//   }
-
 app.post("/generate",function(req,res){
-  let size = req.body.vol;
-  res.render("sort",{size:size})
-  console.log(size);
+  size = req.body.vol;
+  array = (Array.from({length: size}, () => Math.floor(Math.random() * size)))
+  console.log(req.body);
+  res.render("sort",{array:array,size:size,flag1:0,flag2:0,flag3:0,flag4:0})
+
 })
 
  app.post("/",function(req,res){
-
-  // console.log(req.body);
-   //let x = parseInt(req.body.size);
-  // console.log(x);
-  let size = req.body.vol;
-  console.log(size);
    if(req.body.bubble === 'bubble')
    {
-      //console.log(arr);
-      var start = new Date().getTime();
-      bubble_Sort(arr);
-      var end = new Date().getTime();
-      res.render("sort",{array:arr});
+      console.log(array);
+      res.render("sort",{array:array,size:size,flag1:1,flag2:0,flag3:0,flag4:0});
+      flag1 = 0
     //  res.send("Bubble Sort execeuted succesfiully Time req was "+ (end-start) + " millisecond");
    }
    else if (req.body.quick === 'quick') {
