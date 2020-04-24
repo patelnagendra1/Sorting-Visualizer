@@ -10,27 +10,35 @@
 
 
     <div class="navbar">
+      <form class="" action="/generate" method="post">
+        <button type="submit" name="generate">Generate New Array</button>
+        <input type="range" name="vol" value="size" min="10" max="200">
+      </form>
+      <br>
       <form class="" action="/" method="post">
-        <input type="radio" name="size" value="1000">1000</input>
-        <input type="radio" name="size" value="5000">5000</input>
-        <input type="radio" name="size" value="10000">10000</input>
-        <input type="radio" name="size" value="15000">15000</input>
         <button type="submit" name="bubble" value="bubble">Bubble Sort</button>
         <button type="submit" name="quick" value="quick">Quick Sort</button>
         <button type="submit" name="merge" value="merge">Merge Sort</button>
         <button type="submit" name="insertion" value="insertion">Insertion Sort</button>
       </form>
     </div>
-
+    <% let array = (Array.from({length: size}, () => Math.floor(Math.random() * size))) %>
     <div class="graph">
       <% for(var i = 0;i<array.length;i++){ %>
-      <% let width = 5+i %>
-      <% let hgt = array[i] %>
-      <% let lft = i*2+5 %>
-          <div style="border-left: 5px solid black;height: <%=hgt%>px;margin: 5px;float: left"></div>
+      <% let hgt = array[i]*(700/size) %>
+
+      <% if(size < 80){ %>
+        <% margin = 250%>
+      <%}else{%>
+      <% margin = 200*150/size %>
+      <%}%>
+      <%width = 1200/size%>
+      <%if(i == 0){%>
+        <hr style="height:<%=hgt%>px;border-left: <%=width%>px solid black;float: left;margin-left:<%=margin%>px">
+        <%}else{%>
+          <hr style="height:<%=hgt%>px;border-left: <%=width%>px solid black;float: left;margin-left:0.2px">
+          <%}%>
     </div>
-
-
       <% } %>
   </body>
 </html>
